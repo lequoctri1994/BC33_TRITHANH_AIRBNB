@@ -1,0 +1,26 @@
+.footer-page {
+  padding: 0 80px;
+  p {
+    margin-bottom: 0;
+    margin-right: 5px;
+    font-size: $text-xl;
+  }
+  ul {
+    display: flex;
+    list-style: inside;
+    margin-bottom: 0;
+    padding-left: 0;
+    li {
+      margin-right: 10px;
+      a {
+        text-decoration: none;
+        font-size: $text-xl;
+        line-height: 18px;
+        color: $text-c1-footer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
