@@ -1,21 +1,13 @@
 .header-layout {
-  background: url(../../img/ha2.jpg) bottom center / cover no-repeat;
-  height: 100vh;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
   width: 100%;
   opacity: 1;
-  position: relative;
-  top: 0px;
+  top: -80px;
   left: 0px;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3));
-    opacity: 0.7;
-  }
   .header-page {
     display: flex;
     justify-content: space-between;
@@ -34,7 +26,7 @@
       }
     }
     .header-center {
-      color: $text-c1-light;
+      // color: $text-c1-light;
       z-index: 10;
       display: flex;
       justify-content: center;
@@ -45,7 +37,7 @@
       }
     }
     .header-info {
-      color: $text-c1-light;
+      // color: $text-c1-light;
       z-index: 10;
       display: flex;
       align-items: center;
@@ -75,10 +67,11 @@
     form {
       z-index: 10;
       .form-fill {
-        background-color: white;
+        background: $bg-header-light;
         border-radius: 50px;
         align-items: center;
         padding: 15px 40px;
+        margin-bottom: 20px;
         h4 {
           font-size: $text-xl;
         }

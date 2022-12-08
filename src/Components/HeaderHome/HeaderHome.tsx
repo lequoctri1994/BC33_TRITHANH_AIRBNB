@@ -6,7 +6,7 @@ type Props = {}
 export default function HeaderHome({ }: Props) {
   return (
     <div className='header-layout'>
-      <div className="header-page">
+      <div className="header-page container">
         <div className="header-home">
           <NavLink to="/">
             <img src='./img/logo.png' alt="" />
@@ -38,7 +38,7 @@ export default function HeaderHome({ }: Props) {
       </div>
       <div className="header-search">
         <form>
-          <div className="form-fill row">
+          <div className="form-fill border row">
             <div className="location col-3">
               <h4>Địa điểm</h4>
               <div className="destination">

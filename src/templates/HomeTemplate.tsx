@@ -8,7 +8,7 @@ export default function HomeTemplate({ }: Props) {
   return (
     <>
       <HeaderHome />
-      <div className='container' style={{ minHeight: '88vh' }}>
+      <div style={{ minHeight: '88vh' }}>
         <Outlet />
       </div>
       <Footerhome />
