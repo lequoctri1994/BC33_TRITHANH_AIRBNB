@@ -51,7 +51,7 @@
         margin: 0 10px;
         padding: 8px;
         display: flex;
-        border: 1px solid $bg-header-grey;
+        border: 1px solid $bg-grey;
         border-radius: 50px;
         .bar {
           margin-right: 10px;
@@ -84,8 +84,8 @@
           }
         }
         .check-in {
-          border-left: 1px solid $bg-header-grey;
-          border-right: 1px solid $bg-header-grey;
+          border-left: 1px solid $bg-grey;
+          border-right: 1px solid $bg-grey;
           .date-in {
             input {
               outline: none;
@@ -94,7 +94,7 @@
           }
         }
         .check-out {
-          border-right: 1px solid $bg-header-grey;
+          border-right: 1px solid $bg-grey;
           .date-out {
             input {
               outline: none;

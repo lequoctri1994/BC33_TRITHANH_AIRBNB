@@ -6,7 +6,7 @@ type Props = {}
 export default function HeaderHome({ }: Props) {
   return (
     <div className='header-layout'>
-      <div className="header-page container">
+      <div className="header-page">
         <div className="header-home">
           <NavLink to="/">
             <img src='./img/logo.png' alt="" />

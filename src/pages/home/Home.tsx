@@ -21,11 +21,63 @@ export default function Home({ }: Props) {
       </div>
       <div className='content'>
         <div className="container">
-          <div className="menu-list">
+          <div className="list mb-5">
             <div className="tittle">
               <h3>Khám phá những điểm đến gần đây</h3>
             </div>
             <div className="menu pt-5">
+              <div className="city">
+                <div className="row">
+                  <div className="col-3">
+                    <div className="item d-flex">
+                      <div className="thumbnail col-3 pe-3">
+                        <img src="http://picsum.photos/200/200"
+                          className='w-100' alt="" />
+                      </div>
+                      <div className="detail col-9">
+                        <h5>Thành phố Hồ Chí Minh</h5>
+                        <p>15 phút lái xe</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-3">
+                    <div className="item d-flex">
+                      <div className="thumbnail col-3 pe-3">
+                        <img src="http://picsum.photos/200/200"
+                          className='w-100' alt="" />
+                      </div>
+                      <div className="detail col-9">
+                        <h5>Thành phố Hồ Chí Minh</h5>
+                        <p>15 phút lái xe</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-3">
+                    <div className="item d-flex">
+                      <div className="thumbnail col-3 pe-3">
+                        <img src="http://picsum.photos/200/200"
+                          className='w-100' alt="" />
+                      </div>
+                      <div className="detail col-9">
+                        <h5>Thành phố Hồ Chí Minh</h5>
+                        <p>15 phút lái xe</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-3">
+                    <div className="item d-flex">
+                      <div className="thumbnail col-3 pe-3">
+                        <img src="http://picsum.photos/200/200"
+                          className='w-100' alt="" />
+                      </div>
+                      <div className="detail col-9">
+                        <h5>Thành phố Hồ Chí Minh</h5>
+                        <p>15 phút lái xe</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="convenient">

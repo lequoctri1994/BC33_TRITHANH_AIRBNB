@@ -1,0 +1,33 @@
+.list-page {
+  .container {
+    .row {
+      .tittle {
+        p {
+        }
+        h3 {
+        }
+      }
+      .list-choose {
+        border-top: 1px solid $bg-grey;
+        padding: 20px 0;
+        .thumbnail {
+          img {
+          }
+        }
+        .detail {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .info {
+          }
+          .price {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+      .map {
+      }
+    }
+  }
+}

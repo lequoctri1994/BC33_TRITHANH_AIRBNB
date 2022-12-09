@@ -13,6 +13,7 @@ import Profile from './pages/Profile/Profile';
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
 import HeaderHome from './Components/HeaderHome/HeaderHome';
+import List from './pages/List/List';
 
 
 const root = ReactDOM.createRoot(
@@ -30,6 +31,7 @@ root.render(
           </Route>
           <Route path='login' element={<Login />}></Route>
           <Route path='register' element={<Register />}></Route>
+          <Route path='list' element={<List />}></Route>
           <Route path='profile' element={<Profile />}></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
