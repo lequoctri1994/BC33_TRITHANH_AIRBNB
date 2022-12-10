@@ -87,25 +87,25 @@ export default function Home({ }: Props) {
             <div className="row">
               <div className="item col-3">
                 <div className="thumbnail">
-                  <img src="/img/home.png" className='w-100' alt="" />
+                  <img src="/img/home/home.png" className='w-100' alt="" />
                 </div>
                 <p>Toàn bộ nhà</p>
               </div>
               <div className="item col-3">
                 <div className="thumbnail">
-                  <img src="/img/special.jpg" className='w-100 ' alt="" />
+                  <img src="/img/home/special.jpg" className='w-100 ' alt="" />
                 </div>
                 <p>Chỗ ở độc đáo</p>
               </div>
               <div className="item col-3">
                 <div className="thumbnail">
-                  <img src="/img/farm.jpg" className='w-100' alt="" />
+                  <img src="/img/home/farm.jpg" className='w-100' alt="" />
                 </div>
                 <p>Trang trại và thiên nhiên</p>
               </div>
               <div className="item col-3">
                 <div className="thumbnail">
-                  <img src="/img/dog.png" className='w-100' alt="" />
+                  <img src="/img/home/dog.png" className='w-100' alt="" />
                 </div>
                 <p>Cho phép mang theo thú cưng</p>
               </div>

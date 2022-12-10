@@ -1,0 +1,71 @@
+.register-page {
+  background-color: $bg-header-light;
+  padding: 20px;
+  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  .row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .signup-content {
+      .signup-form {
+        .form-title {
+          padding: 20px 0;
+        }
+        .register-form {
+          .form-group {
+            margin-bottom: 25px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #999;
+            label {
+            }
+            input {
+              width: 100%;
+              display: block;
+              border: none;
+              outline: none;
+              padding: 6px 30px;
+            }
+          }
+          .check-item {
+            white-space: nowrap;
+            .agree-term {
+              margin-right: 5px;
+            }
+            .label-agree-term {
+              a {
+                color: $text-c1-dark;
+              }
+            }
+          }
+          .button {
+            .btn-register {
+              background: #6dabe4;
+              padding: 10px 40px;
+              color: #fff;
+              border-radius: 5px;
+              margin-top: 25px;
+              margin-right: 10px;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+    .signup-image {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      figure {
+        img {
+          width: 100%;
+        }
+      }
+      a {
+        color: $text-c1-dark;
+      }
+    }
+  }
+}

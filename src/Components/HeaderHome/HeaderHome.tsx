@@ -25,12 +25,31 @@ export default function HeaderHome({ }: Props) {
             <i className="fa fa-globe"></i>
           </div>
           <div className="right-info">
-            <div className="bar">
+            {/* <div className="bar">
               <i className="fa-solid fa-bars"></i>
             </div>
             <div className="user">
               <i className="fa-solid fa-user"></i>
-            </div>
+            </div> */}
+            <li className="nav-item dropdown">
+              <NavLink className="nav-link dropdown-toggle" to="" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {/* <div className="bar"> */}
+                <i className="bar fa-solid fa-bars"></i>
+                {/* </div> */}
+                {/* <div className="user"> */}
+                <i className="user fa-solid fa-user"></i>
+                {/* </div> */}
+              </NavLink>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/user/register">Đăng ký</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/user/login">Đăng nhập</NavLink></li>
+                <li><hr /></li>
+                <li><NavLink className="dropdown-item" to="">Cho thuê chỗ ở qua Airbnb</NavLink></li>
+                <li><NavLink className="dropdown-item" to="">Tổ chức trải nghiệm</NavLink></li>
+                <li><NavLink className="dropdown-item" to="">Trợ giúp</NavLink></li>
+              </ul>
+            </li>
             <div>
             </div>
           </div>
@@ -61,7 +80,7 @@ export default function HeaderHome({ }: Props) {
               <div className="guest col-7">
                 <h4>Khách</h4>
                 <div className="customer">
-                  <input type='number'  placeholder='Thêm khách' />
+                  <input type='number' placeholder='Thêm khách' />
                 </div>
               </div>
               <div className="btn col-5">

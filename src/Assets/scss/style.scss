@@ -3,15 +3,13 @@
 @import "./themes/mixin";
 @import "./themes/variable";
 
-
 /*------------------Component--------------------*/
 @import "./components/HeaderHome";
 @import "./components/FooterHome";
 
-
 /*-----------------Templates---------------------*/
 @import "./templates//HomeTemplate";
-
+@import "./templates/UserTemplate";
 
 /*------------------Pages--------------------*/
 @import "./pages/detail";

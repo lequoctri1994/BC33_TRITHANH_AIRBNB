@@ -14,6 +14,7 @@ import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
 import HeaderHome from './Components/HeaderHome/HeaderHome';
 import List from './pages/List/List';
+import UserTemplate from './templates/UserTemplate';
 
 
 const root = ReactDOM.createRoot(
@@ -33,6 +34,11 @@ root.render(
           <Route path='register' element={<Register />}></Route>
           <Route path='list' element={<List />}></Route>
           <Route path='profile' element={<Profile />}></Route>
+          <Route path='*' element={<Navigate to="" />}></Route>
+        </Route>
+        <Route path='user' element={<UserTemplate />}>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="register" element={<Register />}></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
       </Routes>
