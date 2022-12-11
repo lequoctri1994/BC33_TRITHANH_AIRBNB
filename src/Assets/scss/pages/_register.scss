@@ -1,8 +1,9 @@
 .register-page {
-  background-color: $bg-header-light;
-  padding: 20px;
-  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   .row {
+    min-height: 500px;
+    padding: 30px;
+    background-color: $bg-header-light;
+    box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -41,30 +42,23 @@
           }
           .button {
             .btn-register {
-              background: #6dabe4;
+              background: $bg-header-main;
               padding: 10px 40px;
-              color: #fff;
+              color: $text-c1-light;
               border-radius: 5px;
               margin-top: 25px;
               margin-right: 10px;
               border: none;
+              &:hover {
+                opacity: 0.5;
+                transition: 0.3s;
+              }
+            }
+            a {
+              color: $text-c1-main;
             }
           }
         }
-      }
-    }
-    .signup-image {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      figure {
-        img {
-          width: 100%;
-        }
-      }
-      a {
-        color: $text-c1-dark;
       }
     }
   }

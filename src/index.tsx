@@ -8,11 +8,11 @@ import Home from './pages/home/Home';
 import Detail from './pages/Detail/Detail';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import Profile from './pages/Profile/Profile';
+import Profile from './pages/Profile/Profile'
 
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
-import HeaderHome from './Components/HeaderHome/HeaderHome';
+
 import List from './pages/List/List';
 import UserTemplate from './templates/UserTemplate';
 
@@ -33,7 +33,7 @@ root.render(
           <Route path='login' element={<Login />}></Route>
           <Route path='register' element={<Register />}></Route>
           <Route path='list' element={<List />}></Route>
-          <Route path='profile' element={<Profile />}></Route>
+          <Route path='aaa' element={<Profile />}></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
         <Route path='user' element={<UserTemplate />}>
