@@ -26,17 +26,6 @@ export default function List({ }: Props) {
                                     <div className="info">
                                         <h5>{location.tenPhong}</h5>
                                         <p>
-                                            {/* {location.banLa}
-                                            {location.banLa}
-                                            {location.banUi}
-                                            {location.bep}
-                                            {location.dieuHoa}
-                                            {location.doXe}
-                                            {location.hoBoi}
-                                            {location.mayGiat}
-                                            {location.phongNgu}
-                                            {location.tivi}
-                                            {location.wifi} */}
                                             2 khách - phòng studio - {location.giuong} giường -  {location.phongTam} phòng tắm <br />
                                             {<span>{location.wifi}</span> ? <span>Wifi</span> : ""} - {<span>{location.bep}</span> ? <span>Bếp</span> : ""} - {<span>{location.dieuHoa}</span> ? <span>Điều hòa</span> : ""} - {<span>{location.mayGiat}</span> ? <span>Máy giặt</span> : ""}
                                         </p>
@@ -48,22 +37,6 @@ export default function List({ }: Props) {
                             </div>
                         })}
                     </div>
-                    {/* 
-                    <div className="map col-5 d-flex">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2142592238947!2d106.7196714153342!3d10.794895461803065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527c2f8f30911%3A0x36ac5073f8c91acd!2sLandmark%2081!5e0!3m2!1svi!2s!4v1670486874919!5m2!1svi!2s"
-                            width="600" style={{ minHeight: '88vh', border: 0 }} loading="lazy"></iframe>
-                    </div> 
-                    */}
-
-                    {/* {arrLocation.map(location => {
-                        if ((location.id) === 1 || (location.id) === 2 || (location.id) === 3)
-                            return <>
-                                <div className="map col-5 d-flex">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2142592238947!2d106.7196714153342!3d10.794895461803065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527c2f8f30911%3A0x36ac5073f8c91acd!2sLandmark%2081!5e0!3m2!1svi!2s!4v1670486874919!5m2!1svi!2s"
-                                        width="600" style={{ minHeight: '88vh', border: 0 }} loading="lazy"></iframe>
-                                </div>
-                            </>
-                    })} */}
                     {arrLocation.map((location) => {
                         if (location.id === 1) {
                             return <div className="map col-5 d-flex">
