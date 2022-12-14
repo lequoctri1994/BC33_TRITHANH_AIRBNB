@@ -12,6 +12,7 @@
         padding: 20px 0;
         .thumbnail {
           img {
+            object-fit: cover;
           }
         }
         .detail {

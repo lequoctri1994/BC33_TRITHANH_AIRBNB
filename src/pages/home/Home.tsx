@@ -1,13 +1,10 @@
 import React from 'react'
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
+
 
 type Props = {}
 
 export default function Home({ }: Props) {
+
   return (
     <div className='home-page'>
       <div className="carousel">

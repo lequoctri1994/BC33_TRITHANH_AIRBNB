@@ -1,9 +1,53 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
-
+import React, { useEffect, useState } from 'react'
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { DispatchType, RootState } from '../../redux/configStore'
+import { getBookingApi, getBookingLocationApi } from '../../redux/reducers/bookingReducer'
 type Props = {}
 
 export default function HeaderHome({ }: Props) {
+  const { arrBooking } = useSelector((state: RootState) => state.bookingReducer)
+  const [search, setSearch] = useState([]);
+  const dispatch: DispatchType = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const actionAsync = getBookingApi();
+    dispatch(actionAsync)
+  }, [])
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchWord: any = event.target.value;
+    setSearch(searchWord)
+  }
+  const onSearchRoom = (search: any) => {
+    setSearch(search);
+    if (search === 'Hồ Chí Minh') {
+      search = 1
+    } else if (search === 'Cần Thơ') {
+      search = 2
+    } else if (search === 'Nha Trang') {
+      search = 3
+    } else if (search === 'Hà Nội') {
+      search = 4
+    } else if (search === 'Phú Quốc') {
+      search = 5
+    } else if (search === 'Đà Nẵng') {
+      search = 6
+    } else if (search === 'Đà Lạt') {
+      search = 7
+    } else if (search === 'Phan Thiết') {
+      search = 8
+    } else {
+      search = ''
+    }
+    console.log("Mã Vị Trí: ", search);
+    const action = getBookingLocationApi(search);
+    dispatch(action)
+    navigate("/list");
+  }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(event)
+  };
   return (
     <div className='header-layout'>
       <div className="header-page">
@@ -25,21 +69,11 @@ export default function HeaderHome({ }: Props) {
             <i className="fa fa-globe"></i>
           </div>
           <div className="right-info">
-            {/* <div className="bar">
-              <i className="fa-solid fa-bars"></i>
-            </div>
-            <div className="user">
-              <i className="fa-solid fa-user"></i>
-            </div> */}
             <li className="nav-item dropdown">
               <NavLink className="nav-link dropdown-toggle" to="" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                {/* <div className="bar"> */}
                 <i className="bar fa-solid fa-bars"></i>
-                {/* </div> */}
-                {/* <div className="user"> */}
                 <i className="user fa-solid fa-user"></i>
-                {/* </div> */}
               </NavLink>
               <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/user/register">Đăng ký</NavLink></li>
@@ -56,40 +90,72 @@ export default function HeaderHome({ }: Props) {
         </div>
       </div>
       <div className="header-search">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-fill border row">
             <div className="location col-3">
               <h4>Địa điểm</h4>
               <div className="destination">
-                <input placeholder='Tìm kiếm địa điểm' />
+                <input
+                  value={search}
+                  onChange={handleChange}
+                  placeholder='Tìm kiếm địa điểm' />
               </div>
             </div>
             <div className="check-in col-3">
               <h4>Nhận phòng</h4>
               <div className="date-in">
-                <input type='date' placeholder='Thêm ngày' />
+                <input type='date' placeholder='Thêm ngày'
+                  name='dateIn'
+                />
               </div>
             </div>
             <div className="check-out col-3">
               <h4>Trả phòng</h4>
               <div className="date-out">
-                <input type='date' placeholder='Thêm ngày' />
+                <input type='date' placeholder='Thêm ngày'
+                  name='dateOut'
+                />
               </div>
             </div>
             <div className="add col-3">
               <div className="guest col-7">
                 <h4>Khách</h4>
                 <div className="customer">
-                  <input type='number' placeholder='Thêm khách' />
+                  <input type='number' placeholder='Thêm khách'
+                    name='guest'
+                  />
                 </div>
               </div>
               <div className="btn col-5">
-                <button className=''>
+                <button type='submit'
+                  onSubmit={onSearchRoom}
+                >
                   <i className='fa fa-search'></i> Tìm kiếm
                 </button>
               </div>
             </div>
           </div>
+          {search.length !== 0 && (
+            <div className="result-location">
+              {arrBooking
+                .filter((item) => {
+                  const searchTerm = search.toString().toLowerCase();
+                  const location = item.tinhThanh.toLowerCase();
+                  return (
+                    searchTerm &&
+                    location.startsWith(searchTerm) &&
+                    location !== searchTerm
+                  );
+                }).map((item, index) => (
+                  <button
+                    onClick={() => onSearchRoom(item.tinhThanh)}
+                    className='data-result p-2'
+                    key={index}>
+                    {item.tenViTri} , {item.tinhThanh}
+                  </button>
+                ))}
+            </div>
+          )}
         </form>
       </div>
     </div>

@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-
+import userReduder from './reducers/userReduder';
+import bookingReducer from './reducers/bookingReducer';
 export const store = configureStore({
     reducer: {
-        state: (state = 1) => {
-            return state
-        }
+        userReduder,
+        bookingReducer
     }
 })
 
