@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { RootState } from '../../redux/configStore';
 
 type Props = {}
@@ -30,8 +31,17 @@ export default function List({ }: Props) {
                                             {<span>{location.wifi}</span> ? <span>Wifi</span> : ""} - {<span>{location.bep}</span> ? <span>Bếp</span> : ""} - {<span>{location.dieuHoa}</span> ? <span>Điều hòa</span> : ""} - {<span>{location.mayGiat}</span> ? <span>Máy giặt</span> : ""}
                                         </p>
                                     </div>
-                                    <div className="price">
-                                        <p> <span>${location.giaTien}</span> / Day</p>
+                                    <div className="view-more">
+                                        <div className="button">
+                                            <NavLink to={`/detail/${location.id}`} className="btn">
+                                                <span>
+                                                    Xem chi tiết
+                                                </span>
+                                            </NavLink>
+                                        </div>
+                                        <div className='price'>
+                                            <a className='btn'><span className='fw-bold'>${location.giaTien} / Day</span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

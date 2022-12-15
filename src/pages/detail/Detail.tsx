@@ -1,13 +1,68 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useParams } from 'react-router-dom'
+import { DispatchType, RootState } from '../../redux/configStore';
+import { getBookingDetailApi } from '../../redux/reducers/bookingReducer';
+import { DateRangePicker, RangeKeyDict } from "react-date-range"
+import format from 'date-fns/format'
+import { addDays } from 'date-fns'
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
 
 type Props = {}
 
 export default function Detail({ }: Props) {
+  const { arrDetail } = useSelector((state: RootState) => state.bookingReducer);
+  // console.log(arrDetail)
+  const dispatch: DispatchType = useDispatch();
+  //Lấy param id từ url
+  const params: any = useParams();
+  useEffect(() => {
+    const action = getBookingDetailApi(params.id);
+    dispatch(action);
+  }, [params.id])
+  //Set date range picker
+  const [range, setRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: 'selection'
+    }
+  ])
+  // open close
+  const [open, setOpen] = useState(false)
+  // get the target element to toggle 
+  const refOne = useRef(null)
+  useEffect(() => {
+    // event listeners
+    document.addEventListener("keydown", hideOnEscape, true)
+    document.addEventListener("click", hideOnClickOutside, true)
+  }, [])
+
+  // hide dropdown on ESC press
+  const hideOnEscape = (event: any) => {
+    // console.log(e.key)
+    if (event.key === "Escape") {
+      setOpen(false)
+    }
+  }
+
+  // Hide dropdown on outside click
+  const hideOnClickOutside = (event: any) => {
+    // console.log(refOne.current)
+    // console.log(e.target)
+    // if (refOne.current && !refOne.current.contains(event.target)) {
+    //   setOpen(false)
+    // }
+  }
+  const handleChangeDate = (rangesByKey: RangeKeyDict) => {
+    const changeDate: any = rangesByKey
+    setRange([changeDate.selection]);
+  }
   return (
     <div className='detail-page'>
       <div className="container">
-        <h3 className='pt-3'>Amazing View in Landmark 81</h3>
+        <h3 className='pt-3'>{arrDetail?.tenPhong}</h3>
         <div className="title">
           <div className="info">
             <ul>
@@ -40,31 +95,15 @@ export default function Detail({ }: Props) {
           </div>
         </div>
         <div className="image">
-          <div className="row">
-            <div className="item item-1">
-              <img src="../img/detail/pic1.jpg" alt="" />
-            </div>
-            <div className="item">
-              <img src="../img/detail/pic2.jpg" alt="" />
-            </div>
-            <div className="item">
-              <img src="../img/detail/pic3.jpg" alt="" />
-            </div>
-            <div className="item">
-              <img src="../img/detail/pic4.jpg" alt="" />
-            </div>
-            <div className="item">
-              <img src="../img/detail/pic5.jpg" alt="" />
-            </div>
-          </div>
+          <img src={arrDetail?.hinhAnh} className='w-100 h-100' alt="" />
         </div>
         <div className="description">
           <div className="row">
             <div className="content col-8">
               <div className="row">
                 <div className="tittle-left col-11">
-                  <h3>Toàn bộ căn hộ cho thuê - Chủ nhà Chip</h3>
-                  <p>4 khách - 2 phòng ngủ - 2 giường - 2 phòng tắm</p>
+                  <h3>Toàn bộ căn hộ cho thuê</h3>
+                  <p>{arrDetail?.khach} khách - {arrDetail?.phongNgu} phòng ngủ - {arrDetail?.giuong} giường - {arrDetail?.phongTam} phòng tắm</p>
                 </div>
                 <div className="title-right col-1">
                   <img src="http://picsum.photos/50/50" className='w-100 rounded-circle' alt="" />
@@ -96,10 +135,8 @@ export default function Detail({ }: Props) {
                       <i className="fa-solid fa-house-user"></i>
                     </div>
                     <div className="col-11">
-                      <h4>Chip là chủ nhà siêu cấp</h4>
-                      <p>
-                        Chủ nhà siêu cấp là những chủ nhà có kinh nghiệm, được đánh giá cao và là những người cam kết mang lại quãng thời gian ở tuyệt vời cho khách
-                      </p>
+                      <h4>Chủ nhà siêu cấp</h4>
+                      {arrDetail?.moTa}
                     </div>
                   </div>
                   <div className="item d-flex pb-2">
@@ -113,7 +150,7 @@ export default function Detail({ }: Props) {
                 </div>
               </div>
               <div className="authority py-3">
-                <img src="../img/detail/aircover.jpg" alt=""
+                <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" alt=""
                   width={125} height={26}
                 />
                 <p className='pt-3'>
@@ -127,72 +164,96 @@ export default function Detail({ }: Props) {
                 <h4>Nơi này có những gì cho bạn</h4>
                 <div className="row">
                   <div className="col-6">
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-utensils"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Bếp</span>
-                      </div>
-                    </div>
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-house-laptop"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Không gian riêng để làm việc</span>
-                      </div>
-                    </div>
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-shower"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Bồn tắm nước nóng</span>
-                      </div>
-                    </div>
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-elevator"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Thang máy</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-6">
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-wifi"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Wifi</span>
-                      </div>
-                    </div>
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-tv"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>TV</span>
-                      </div>
-                    </div>
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-shirt"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Máy giặt</span>
-                      </div>
-                    </div>
-                    <div className="item d-flex align-items-center">
-                      <div className="col-1">
-                        <i className="fa-solid fa-person-swimming"></i>
-                      </div>
-                      <div className="col-11">
-                        <span>Bể bơi</span>
-                      </div>
-                    </div>
+                    {arrDetail?.bep
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-utensils"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Bếp</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.banLa
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-house-laptop"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Bàn làm việc</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.banUi
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-shirt"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Bàn ủi</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.dieuHoa
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-fan"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Điều hòa nhiệt độ</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.doXe
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-car"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Bãi đỗ xe</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.hoBoi
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-person-swimming"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Hồ bơi</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.mayGiat
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-socks"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Máy giặt</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.tivi
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-tv"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Ti-vi</span>
+                        </div>
+                      </div>)
+                      : ""}
+                    {arrDetail?.wifi
+                      ? (<div className="item d-flex align-items-center">
+                        <div className="col-1">
+                          <i className="fa-solid fa-wifi"></i>
+                        </div>
+                        <div className="col-11">
+                          <span>Wifi</span>
+                        </div>
+                      </div>)
+                      : ""}
                   </div>
                 </div>
                 <div className="show-more pt-3">
@@ -203,60 +264,76 @@ export default function Detail({ }: Props) {
               </div>
             </div>
             <div className="payment col-4">
-              <div className="check p-4">
-                <div className="cost">
-                  <p> <span className='fw-bold'>$59</span>/đêm</p>
-                </div>
-                <div className="row">
-                  <div className="check-in p-3 col-6">
-                    <p>Nhận phòng</p>
-                    <input type="date" />
+              <form>
+                <div className="check p-4">
+                  <div className="cost">
+                    <p> <span className='fw-bold'>${arrDetail?.giaTien}</span>/đêm</p>
                   </div>
-                  <div className="check-out p-3 col-6">
-                    <p>Trả phòng</p>
-                    <input type="date" />
-                  </div>
-                  <div className="add-guest col-12 p-3">
-                    <p>Khách</p>
-                    <input className='w-50' type="number" value={1} />
-                  </div>
+                  <div className="row">
+                    <div className="calendar p-2 text-center ">
+                      <p>Nhận phòng - Trả phòng</p>
+                      <input
+                        value={`${format(range[0].startDate, "dd/MM/yyyy")} - ${format(range[0].endDate, "dd/MM/yyyy")}`}
+                        readOnly
+                        className="inputBox text-center"
+                        onClick={() => setOpen(open => !open)}
+                      />
+                      <div ref={refOne}>
+                        {open &&
+                          <DateRangePicker
+                            onChange={handleChangeDate}
+                            editableDateInputs={true}
+                            moveRangeOnFirstSelection={false}
+                            ranges={range}
+                            months={2}
+                            direction="horizontal"
+                            className="calendarElement"
+                          />
+                        }
+                      </div>
+                    </div>
+                    <div className="add-guest text-center mt-2 p-2">
+                      <p>Khách</p>
+                      <input className='w-20' type="number" />
+                    </div>
 
-                  <div className='button my-3'>
-                    <button className='btn border'>
-                      Đặt phòng
-                    </button>
-                  </div>
-                  <div className='notification text-center'>
-                    <p>Bạn vẫn chưa bị trừ tiền</p>
-                  </div>
-                  <div className="check-payment border-bottom">
-                    <div className="cost-amount d-flex justify-content-between">
-                      <div className="cost-date text-decoration-underline">
-                        <p>$59 x 5 đêm</p>
+                    <div className='button my-3'>
+                      <button className='btn border' type='submit'>
+                        Đặt phòng
+                      </button>
+                    </div>
+                    <div className='notification text-center'>
+                      <p>Bạn vẫn chưa bị trừ tiền</p>
+                    </div>
+                    <div className="check-payment border-bottom">
+                      <div className="cost-amount d-flex justify-content-between">
+                        <div className="cost-date text-decoration-underline">
+                          <p>${arrDetail?.giaTien} x 5 đêm</p>
+                        </div>
+                        <div className="bill">
+                          $295
+                        </div>
                       </div>
-                      <div className="bill">
-                        $295
+                      <div className="service-cost d-flex justify-content-between">
+                        <div className="service text-decoration-underline">
+                          <p>Phí dịch vụ</p>
+                        </div>
+                        <div className="cost">
+                          $31
+                        </div>
                       </div>
                     </div>
-                    <div className="service-cost d-flex justify-content-between">
-                      <div className="service text-decoration-underline">
-                        <p>Phí dịch vụ</p>
+                    <div className="total d-flex justify-content-between py-3">
+                      <div className="detail">
+                        <p>Tổng</p>
                       </div>
-                      <div className="cost">
-                        $31
+                      <div className="in-total">
+                        $326
                       </div>
-                    </div>
-                  </div>
-                  <div className="total d-flex justify-content-between py-3">
-                    <div className="detail">
-                      <p>Tổng</p>
-                    </div>
-                    <div className="in-total">
-                      $326
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

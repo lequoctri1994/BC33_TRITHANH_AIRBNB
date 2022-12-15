@@ -32,15 +32,39 @@ export interface BookingLocation {
     hinhAnh: string;
 }
 
+export interface BookingDetail {
+    id: number;
+    tenPhong: string;
+    khach: number;
+    phongNgu: number;
+    giuong: number;
+    phongTam: number;
+    moTa: string;
+    giaTien: number;
+    mayGiat: boolean;
+    banLa: boolean;
+    tivi: boolean;
+    dieuHoa: boolean;
+    wifi: boolean;
+    bep: boolean;
+    doXe: boolean;
+    hoBoi: boolean;
+    banUi: boolean;
+    maViTri: number;
+    hinhAnh: string;
+}
+
 
 interface BookingState {
     arrBooking: BookingModel[],
-    arrLocation: BookingLocation[]
+    arrLocation: BookingLocation[],
+    arrDetail: BookingDetail | null
 }
 
 const initialState: BookingState = {
     arrBooking: [],
-    arrLocation: []
+    arrLocation: [],
+    arrDetail: null
 }
 
 const bookingReducer = createSlice({
@@ -51,14 +75,17 @@ const bookingReducer = createSlice({
             const arrBookingList: BookingModel[] = action.payload;
             state.arrBooking = arrBookingList;
         },
-        setArrLocation: (state: BookingState, action: PayloadAction<BookingLocation[]>) => {
+        setLocationAction: (state: BookingState, action: PayloadAction<BookingLocation[]>) => {
             const arrLocationList: BookingLocation[] = action.payload;
             state.arrLocation = arrLocationList;
         },
+        setDetailAction: (state: BookingState, action: PayloadAction<BookingDetail>) => {
+            state.arrDetail = action.payload;
+        }
     }
 });
 
-export const { setArrAction, setArrLocation } = bookingReducer.actions
+export const { setArrAction, setLocationAction, setDetailAction } = bookingReducer.actions
 export default bookingReducer.reducer
 
 //--------------------Action Async ---------------------
@@ -74,7 +101,15 @@ export const getBookingLocationApi = (maViTri: number) => {
     return async (dispatch: DispatchType) => {
         const result: any = await http.get('/api/phong-thue/lay-phong-theo-vi-tri?maViTri=' + maViTri);
         let arrBookingLocation: BookingLocation[] = result.data.content;
-        const action: PayloadAction<BookingLocation[]> = setArrLocation(arrBookingLocation);
+        const action: PayloadAction<BookingLocation[]> = setLocationAction(arrBookingLocation);
         dispatch(action)
     }
 }
+export const getBookingDetailApi = (id: string) => {
+    return async (dispatch: DispatchType) => {
+        const result: any = await http.get('api/phong-thue/' + id);
+        let bookingDetail: BookingDetail = result.data.content;
+        const action: PayloadAction<BookingDetail> = setDetailAction(bookingDetail);
+        dispatch(action);
+    }
+} 
