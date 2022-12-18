@@ -33,14 +33,14 @@ export interface BookingLocation {
 }
 
 export interface BookingDetail {
-    id: number;
+    id: number | any;
     tenPhong: string;
     khach: number;
     phongNgu: number;
     giuong: number;
     phongTam: number;
     moTa: string;
-    giaTien: number;
+    giaTien: number | any;
     mayGiat: boolean;
     banLa: boolean;
     tivi: boolean;
@@ -50,7 +50,7 @@ export interface BookingDetail {
     doXe: boolean;
     hoBoi: boolean;
     banUi: boolean;
-    maViTri: number;
+    maViTri: number | any;
     hinhAnh: string;
 }
 
@@ -64,7 +64,7 @@ interface BookingState {
 const initialState: BookingState = {
     arrBooking: [],
     arrLocation: [],
-    arrDetail: null
+    arrDetail: null,
 }
 
 const bookingReducer = createSlice({
@@ -112,4 +112,18 @@ export const getBookingDetailApi = (id: string) => {
         const action: PayloadAction<BookingDetail> = setDetailAction(bookingDetail);
         dispatch(action);
     }
-} 
+}
+export const postBookingApi =
+    (id: number, roomId: number, dateIn: any, dateOut: any, guest: number, profileId: number) => {
+        return async (dispatch: DispatchType) => {
+            const result = await http.post("/api/dat-phong", {
+                id: id,
+                maPhong: roomId,
+                ngayDen: dateIn,
+                ngayDi: dateOut,
+                soLuongKhach: guest,
+                maNguoiDung: profileId
+            });
+            console.log("Lịch sử đặt phòng: ", result);
+        };
+    };

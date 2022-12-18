@@ -7,7 +7,6 @@ type Props = {}
 
 export default function List({ }: Props) {
     const { arrLocation } = useSelector((state: RootState) => state.bookingReducer)
-    console.log("Location: ", arrLocation);
     return (
         <div className='list-page pt-3'>
             <div className="container">
@@ -40,7 +39,9 @@ export default function List({ }: Props) {
                                             </NavLink>
                                         </div>
                                         <div className='price'>
-                                            <a className='btn'><span className='fw-bold'>${location.giaTien} / Day</span></a>
+                                            <NavLink to={`/detail/${location.id}`} className='btn'>
+                                                <span className='fw-bold'>${location.giaTien}</span> / Day
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>

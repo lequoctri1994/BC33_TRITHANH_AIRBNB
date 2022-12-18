@@ -87,21 +87,28 @@
                 display: inline-block;
                 position: relative;
                 border-radius: 10px;
-                p {
-                  margin-bottom: 0;
-                  padding-bottom: 5px;
-                  font-weight: $text-semiBold;
-                }
-                position: relative;
-                input {
-                  width: 100%;
-                  padding: 10px;
-                  border-radius: 5px;
-                  border: 1px solid #b0b0b0;
-                  outline: none;
-                  cursor: pointer;
-                  &:hover {
-                    border: 1px solid;
+                .check {
+                  display: flex;
+                  .check-in {
+                    p {
+                      margin-bottom: 0;
+                      padding-bottom: 5px;
+                      font-weight: $text-semiBold;
+                    }
+                    input {
+                      width: 100%;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #b0b0b0;
+                      outline: none;
+                      cursor: pointer;
+                      &:hover {
+                        border: 1px solid;
+                      }
+                    }
+                  }
+                  .check-out {
+                    @extend .check-in;
                   }
                 }
                 .calendarElement {
@@ -115,9 +122,20 @@
                 }
               }
               .add-guest {
-                @extend .calendar;
+                p {
+                }
+                input {
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 5px;
+                  border: 1px solid #b0b0b0;
+                  outline: none;
+                  cursor: pointer;
+                  &:hover {
+                    border: 1px solid;
+                  }
+                }
               }
-
               .button {
                 .btn {
                   padding: 15px 0;
