@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { DispatchType, RootState } from '../../redux/configStore';
+import { getBookingProfileIdApi } from '../../redux/reducers/bookingReducer';
+import { getProfileApi } from '../../redux/reducers/userReduder';
 
 type Props = {}
 
 export default function Profile({ }: Props) {
+    const dispatch: DispatchType = useDispatch();
+    useEffect(() => {
+        const action = getProfileApi(userLogin.user?.id);
+        dispatch(action);
+        const action2 = getBookingProfileIdApi(userLogin.user?.id);
+        dispatch(action2)
+    }, []);
+    const { userLogin } = useSelector((state: RootState) => state.userReduder);
+    const { arrHistory } = useSelector((state: RootState) => state.bookingReducer);
     return (
         <div className='profile-page pt-3'>
             <div className="container">
@@ -40,51 +53,35 @@ export default function Profile({ }: Props) {
                     </div>
                     <div className="history col-9 mb-3">
                         <div className="tittle">
-                            <h3>Xìn chào, tôi là Ẩn Danh</h3>
+                            <h3>Xìn chào, tôi là {userLogin.user.name}</h3>
                             <p>Bắt đầu tham gia vào 2021</p>
                         </div>
                         <div className="edit-profile">
                             <button className='border-0 text-decoration-underline'>Chỉnh sửa hồ sơ</button>
                         </div>
                         <h3>Phòng đã thuê</h3>
-                        <div className="list-choose d-flex">
-                            <div className="thumbnail col-4 me-3">
-                                <img src="http://picsum.photos/300/200"
-                                    className='w-100' alt="" />
-                            </div>
-                            <div className="detail col-8 p-2">
-                                <div className="info">
-                                    <h5>Landmark 81</h5>
-                                    <p>
-                                        2 khách - phòng studio - 1 giường - 1 phòng tắm <br />
-                                        Wifi - Bếp - Điều hòa nhiệt độ - Máy giặt
-                                    </p>
+                        {arrHistory.map((item: any, index) => {
+                            return <div className="list-choose d-flex my-3 border-top" key={index}>
+                                <div className="thumbnail col-4 me-3">
+                                    <img src="http://picsum.photos/300/200"
+                                        className='w-100' alt="" />
                                 </div>
-                                <div className="price">
-                                    <p> <span>$396</span> / Tháng</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="list-choose d-flex">
-                            <div className="thumbnail col-4 me-3">
-                                <img src="http://picsum.photos/300/200"
-                                    className='w-100' alt="" />
-                            </div>
-                            <div className="detail col-8 p-2">
-                                <div className="info">
-                                    <h5>Landmark 81</h5>
-                                    <p>
-                                        2 khách - phòng studio - 1 giường - 1 phòng tắm <br />
-                                        Wifi - Bếp - Điều hòa nhiệt độ - Máy giặt
-                                    </p>
-                                </div>
-                                <div className="price">
-                                    <p> <span>$396</span> / Tháng</p>
+                                <div className="detail col-8 p-2">
+                                    <div className="info">
+                                        <h5>Landmark 81</h5>
+                                        <p>
+                                            {item.soLuongKhach} khách - phòng studio - 1 giường - 1 phòng tắm <br />
+                                            Wifi - Bếp - Điều hòa nhiệt độ - Máy giặt
+                                        </p>
+                                    </div>
+                                    <div className="time">
+                                        <span>{item.ngayDen}</span>
+                                        - <span>{item.ngayDi}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        })}
                     </div>
-
                 </div>
             </div>
         </div >

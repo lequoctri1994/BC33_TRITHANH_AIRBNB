@@ -2,11 +2,10 @@
   width: 100%;
   min-height: 969px;
   font-size: $text-base;
-  // background: #f65d5d;
   background: url(../../img/signup/bg-signup.jpg) center center / cover
     no-repeat;
   object-fit: cover;
-  padding-top: 150px;
+  padding: 100px 0;
   .container {
     width: 100%;
     display: flex;

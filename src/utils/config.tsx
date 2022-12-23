@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { createBrowserHistory } from 'history'
+import { history } from "../index";
 export const USER_LOGIN = 'userLogin';
+export const USER_PROFILE = "userProfile";
 export const ACCESSTOKEN = 'accessToken';
 
-export const history = createBrowserHistory();
 export const settings = {
     setStorageJson: (name: string, data: any): void => {
         data = JSON.stringify(data);
@@ -97,10 +97,10 @@ http.interceptors.response.use((response) => {
     return response;
 }, (error) => {
     console.log(error);
-    if (error.response?.status === 401) {
-        history.push('/login');
+    if (error.response?.status === 400) {
+        history.push('/user/login');
     }
-    if (error.response?.status === 400 || error.response?.status === 400) {
+    if (error.response?.status === 401 || error.response?.status === 404) {
         history.push('/');
     }
     return Promise.reject(error);

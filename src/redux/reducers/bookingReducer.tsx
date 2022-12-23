@@ -58,13 +58,18 @@ export interface BookingDetail {
 interface BookingState {
     arrBooking: BookingModel[],
     arrLocation: BookingLocation[],
-    arrDetail: BookingDetail | null
+    arrDetail: BookingDetail | null,
+    arrHistory: BookingLocation[],
+    arrarrDetailHistory: BookingLocation[]
+
 }
 
 const initialState: BookingState = {
     arrBooking: [],
     arrLocation: [],
     arrDetail: null,
+    arrHistory: [],
+    arrarrDetailHistory: []
 }
 
 const bookingReducer = createSlice({
@@ -81,11 +86,17 @@ const bookingReducer = createSlice({
         },
         setDetailAction: (state: BookingState, action: PayloadAction<BookingDetail>) => {
             state.arrDetail = action.payload;
+        },
+        setHistoryAction: (state: BookingState, action: PayloadAction<BookingLocation[]>) => {
+            state.arrHistory = action.payload;
+        },
+        setDetailHistoryAction: (state: BookingState, action: PayloadAction<BookingLocation[]>) => {
+            state.arrarrDetailHistory = action.payload;
         }
     }
 });
 
-export const { setArrAction, setLocationAction, setDetailAction } = bookingReducer.actions
+export const { setArrAction, setLocationAction, setDetailAction, setHistoryAction, setDetailHistoryAction } = bookingReducer.actions
 export default bookingReducer.reducer
 
 //--------------------Action Async ---------------------
@@ -107,7 +118,7 @@ export const getBookingLocationApi = (maViTri: number) => {
 }
 export const getBookingDetailApi = (id: string) => {
     return async (dispatch: DispatchType) => {
-        const result: any = await http.get('api/phong-thue/' + id);
+        const result: any = await http.get('/api/phong-thue/' + id);
         let bookingDetail: BookingDetail = result.data.content;
         const action: PayloadAction<BookingDetail> = setDetailAction(bookingDetail);
         dispatch(action);
@@ -127,3 +138,11 @@ export const postBookingApi =
             console.log("Lịch sử đặt phòng: ", result);
         };
     };
+export const getBookingProfileIdApi = (profileId: number) => {
+    return async (dispatch: DispatchType) => {
+        const result: any = await http.get('/api/dat-phong/lay-theo-nguoi-dung/' + profileId);
+        let bookingHistory: BookingLocation[] = result.data.content;
+        const action: PayloadAction<BookingLocation[]> = setHistoryAction(bookingHistory);
+        dispatch(action);
+    }
+}

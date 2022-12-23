@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { DispatchType, RootState } from '../../redux/configStore'
 import { getBookingApi, getBookingLocationApi } from '../../redux/reducers/bookingReducer'
+import { ACCESSTOKEN, USER_LOGIN } from '../../utils/config';
 type Props = {}
 
 export default function HeaderHome({ }: Props) {
@@ -10,6 +11,35 @@ export default function HeaderHome({ }: Props) {
   const [search, setSearch] = useState([]);
   const dispatch: DispatchType = useDispatch();
   const navigate = useNavigate();
+  const { userLogin } = useSelector((state: RootState) => state.userReduder);
+  // console.log(userLogin.user.name)
+  const renderLogin = () => {
+    if (userLogin.user?.name) {
+      return (
+        <>
+          <li><NavLink className="dropdown-item" to="/profile">
+            Hi!! {userLogin.user.name}
+          </NavLink></li>
+          <li><button className="dropdown-item"
+            onClick={() => {
+              localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem(ACCESSTOKEN);
+              window.location.href = "/";
+            }}>
+            Đăng xuất
+          </button>
+          </li>
+        </>
+      );
+    }
+    return (
+      <>
+        <li><NavLink className="dropdown-item" to="/user/register">Đăng ký</NavLink></li>
+        <li><NavLink className="dropdown-item" to="/user/login">Đăng nhập</NavLink></li>
+      </>
+    );
+  };
+  //---------------------------------------------------------------------------
   useEffect(() => {
     const actionAsync = getBookingApi();
     dispatch(actionAsync)
@@ -76,8 +106,7 @@ export default function HeaderHome({ }: Props) {
                 <i className="user fa-solid fa-user"></i>
               </NavLink>
               <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" to="/user/register">Đăng ký</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/user/login">Đăng nhập</NavLink></li>
+                {renderLogin()}
                 <li><hr /></li>
                 <li><NavLink className="dropdown-item" to="">Cho thuê chỗ ở qua Airbnb</NavLink></li>
                 <li><NavLink className="dropdown-item" to="">Tổ chức trải nghiệm</NavLink></li>

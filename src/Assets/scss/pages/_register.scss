@@ -29,15 +29,25 @@
               padding: 6px 30px;
             }
           }
-          .check-item {
-            white-space: nowrap;
-            .agree-term {
-              margin-right: 5px;
+          .radioGroup {
+            padding: 10px 0px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            span {
+              margin: 0;
             }
-            .label-agree-term {
-              a {
-                color: $text-c1-dark;
-              }
+            input[type="radio"] {
+              width: 15px;
+              height: 2em;
+              accent-color: $bg-header-main;
+              cursor: pointer;
+            }
+            label {
+              font-size: $text-xl;
+            }
+            .radioButton {
+              margin: 0 5px;
             }
           }
           .button {
