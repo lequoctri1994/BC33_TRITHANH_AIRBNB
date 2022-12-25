@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserLogin } from '../../pages/Login/Login';
+import { UserLogin } from '../../pages/login/Login';
 import {
     ACCESSTOKEN,
     http,

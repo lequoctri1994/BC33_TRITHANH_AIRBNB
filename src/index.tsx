@@ -1,11 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-<<<<<<< HEAD
-import './Assets/scss/style.scss'
-
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import HomeTemplate from './Templates/HomeTemplate';
-=======
 import './assets/scss/style.scss';
 import type {
   BrowserHistory,
@@ -19,10 +13,9 @@ import {
   Routes,
 } from "react-router-dom";
 import HomeTemplate from './templates/HomeTemplate';
->>>>>>> 4393e123417172471a36aa08ca94b21277722eaa
 import Home from './pages/home/Home';
 import Detail from './pages/detail/Detail';
-import Login from './pages/login/Login';
+
 import Register from './pages/register/Register';
 import Profile from './pages/Profile/Profile'
 
@@ -30,14 +23,10 @@ import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
 
 import List from './pages/List/List';
-<<<<<<< HEAD
-import UserTemplate from './Templates/UserTemplate';
-
-=======
 import UserTemplate from './templates/UserTemplate';
 import { createBrowserHistory } from "history";
+import Login from './pages/login/Login'
 export const history: any = createBrowserHistory();
->>>>>>> 4393e123417172471a36aa08ca94b21277722eaa
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
