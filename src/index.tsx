@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/scss/style.scss';
+import './Assets/scss/style.scss'
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import HomeTemplate from './templates/HomeTemplate';
+import HomeTemplate from './Templates/HomeTemplate';
 import Home from './pages/home/Home';
-import Detail from './pages/Detail/Detail';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
+import Detail from './pages/detail/Detail';
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
 import Profile from './pages/Profile/Profile'
 
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
 
 import List from './pages/List/List';
-import UserTemplate from './templates/UserTemplate';
+import UserTemplate from './Templates/UserTemplate';
 
 
 const root = ReactDOM.createRoot(
