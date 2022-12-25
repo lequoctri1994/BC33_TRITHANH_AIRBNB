@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+<<<<<<< HEAD
 import { UserLogin } from '../../pages/Login/Login';
 import { EditProfile } from '../../pages/Profile/Profile';
 import { UserRegister } from '../../pages/Register/Register';
+=======
+import { UserLogin } from '../../pages/login/Login';
+>>>>>>> 2d8cd217f64b89dea5fd242ae660dd160deeeac3
 import {
     ACCESSTOKEN,
     http,
