@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom'
 import { DispatchType, RootState } from '../../redux/configStore';
-import { getBookingDetailApi, postBookingApi } from '../../redux/reducers/bookingReducer';
-import { DateRangePicker, RangeKeyDict } from "react-date-range"
-import format from 'date-fns/format'
-import { addDays } from 'date-fns'
+import { getBookingDetailApi } from '../../redux/reducers/bookingReducer';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
@@ -13,7 +10,6 @@ type Props = {}
 
 export default function Detail({ }: Props) {
   const { arrDetail } = useSelector((state: RootState) => state.bookingReducer);
-  console.log(arrDetail)
   const dispatch: DispatchType = useDispatch();
   //Lấy param id từ url
   const params: any = useParams();
@@ -21,54 +17,8 @@ export default function Detail({ }: Props) {
     const action = getBookingDetailApi(params.id);
     dispatch(action);
   }, [params.id])
-  //Set date range picker
-  const [range, setRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: 'selection'
-    }
-  ])
-  // open close
-  const [open, setOpen] = useState(false)
-  // get the target element to toggle 
-  const refOne = useRef<HTMLInputElement>(null)
-  useEffect(() => {
-    // event listeners
-    document.addEventListener("keydown", hideOnEscape, true)
-  }, [])
-
-  // hide dropdown on ESC press
-  const hideOnEscape = (event: any) => {
-    if (event.key === "Escape") {
-      setOpen(false)
-    }
-  }
-  const handleChangeDate = (rangesByKey: RangeKeyDict) => {
-    const changeDate: any = rangesByKey
-    setRange([changeDate.selection]);
-  }
-  const dateDiff = (date1: any, date2: any) => {
-    const dt1 = new Date(date1);
-    const dt2 = new Date(date2);
-    return Math.floor(
-      (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
-        Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
-      (1000 * 60 * 60 * 24)
-    );
-  }
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const target = e.target as typeof e.target & {
-      dateIn: { value: any };
-      dateOut: { value: any };
-      guest: { value: number };
-    };
-    const dateIn = target.dateIn.value;
-    const dateOut = target.dateOut.value;
-    const guest = target.guest.value;
-    const action = postBookingApi(arrDetail?.id, arrDetail?.maViTri, dateIn, dateOut, guest, 1234)
-    dispatch(action);
   }
   return (
     <div className='detail-page'>
@@ -275,9 +225,7 @@ export default function Detail({ }: Props) {
               </div>
             </div>
             <div className="payment col-4">
-              <form
-                onSubmit={handleSubmit}
-              >
+              <form>
                 <div className="check p-4">
                   <div className="cost">
                     <p> <span className='fw-bold'>${arrDetail?.giaTien}</span>/đêm</p>
@@ -288,91 +236,55 @@ export default function Detail({ }: Props) {
                         <div className="check-in w-50 me-3">
                           <p>
                             <i className="fa-regular fa-calendar-days"></i> Nhận phòng</p>
-                          <input
-                            id='dateIn'
-                            name='dateIn'
-                            value={`${format(range[0].startDate, "yyyy-MM-dd")}`}
-                            readOnly
-                            className="date-in text-center"
-                            onClick={() => setOpen(open => !open)}
-                          />
                         </div>
                         <div className="check-out  w-50">
                           <p><i className="fa-regular fa-calendar-days"></i> Trả phòng</p>
-                          <input
-                            id='dateOut'
-                            name='dateOut'
-                            value={`${format(range[0].endDate, "yyyy-MM-dd")} `}
-                            readOnly
-                            className="date-out text-center"
-                            onClick={() => setOpen(open => !open)}
-                          />
-                        </div>
-                      </div>
-                      <div ref={refOne}>
-                        {open &&
-                          <DateRangePicker
-                            onChange={handleChangeDate}
-                            editableDateInputs={true}
-                            moveRangeOnFirstSelection={false}
-                            ranges={range}
-                            months={2}
-                            direction="horizontal"
-                            className="calendarElement"
-                          />
-                        }
-                      </div>
-                    </div>
-                    <div className="add-guest w-100 text-center mt-2 p-2">
-                      <p>Khách</p>
-                      <input className='w-20'
-                        type="number"
-                        id='guest'
-                        name='guest' />
-                    </div>
-                    <div className='button my-3'>
-                      <button className='btn border' type='submit'>
-                        Đặt phòng
-                      </button>
-                    </div>
-                    <div className='notification text-center'>
-                      <p>Bạn vẫn chưa bị trừ tiền</p>
-                    </div>
-                    <div className="check-payment border-bottom">
-                      <div className="cost-amount d-flex justify-content-between">
-                        <div className="cost-date text-decoration-underline">
-                          <p>${arrDetail?.giaTien} x {dateDiff
-                            (`${format(range[0].startDate, "MM/dd/yyyy")} `,
-                              `${format(range[0].endDate, "MM/dd/yyyy")} `)} đêm
-                          </p>
-                        </div>
-                        <div className="bill">
-                          <p>
-                            ${arrDetail?.giaTien * dateDiff
-                              (`${format(range[0].startDate, "MM/dd/yyyy")} `,
-                                `${format(range[0].endDate, "MM/dd/yyyy")} `)}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="service-cost d-flex justify-content-between">
-                        <div className="service text-decoration-underline">
-                          <p>Phí dịch vụ</p>
-                        </div>
-                        <div className="cost">
-                          $31
                         </div>
                       </div>
                     </div>
-                    <div className="total d-flex justify-content-between py-3">
-                      <div className="detail">
-                        <p>Tổng</p>
+                  </div>
+                  <div className="add-guest w-100 text-center mt-2 p-2">
+                    <p>Khách</p>
+                    <input className='w-20'
+                      type="number"
+                      id='guest'
+                      name='guest' />
+                  </div>
+                  <div className='button my-3'>
+                    <button className='btn border' type='submit'>
+                      Đặt phòng
+                    </button>
+                  </div>
+                  <div className='notification text-center'>
+                    <p>Bạn vẫn chưa bị trừ tiền</p>
+                  </div>
+                  <div className="check-payment border-bottom">
+                    <div className="cost-amount d-flex justify-content-between">
+                      <div className="cost-date text-decoration-underline">
+                        <p>${arrDetail?.giaTien} / đêm
+                        </p>
                       </div>
-                      <div className="in-total">
-                        {arrDetail?.giaTien *
-                          dateDiff
-                            (`${format(range[0].startDate, "MM/dd/yyyy")} `,
-                              `${format(range[0].endDate, "MM/dd/yyyy")} `) + 31}
+                      <div className="bill">
+                        <p>
+                          ${arrDetail?.giaTien}
+                        </p>
                       </div>
+                    </div>
+                    <div className="service-cost d-flex justify-content-between">
+                      <div className="service text-decoration-underline">
+                        <p>Phí dịch vụ</p>
+                      </div>
+                      <div className="cost">
+                        $31
+                      </div>
+                    </div>
+                  </div>
+                  <div className="total d-flex justify-content-between py-3">
+                    <div className="detail">
+                      <p>Tổng</p>
+                    </div>
+                    <div className="in-total">
+                      {arrDetail?.giaTien}
                     </div>
                   </div>
                 </div>
