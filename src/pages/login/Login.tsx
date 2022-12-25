@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useFormik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,6 @@ type Props = {}
 export type UserLogin = { email: string, password: string }
 export default function Login({ }: Props) {
   const dispatch: DispatchType = useDispatch();
-  const navigate = useNavigate()
   const frm: FormikProps<UserLogin> = useFormik<UserLogin>({
     initialValues: {
       email: '',
@@ -23,7 +22,6 @@ export default function Login({ }: Props) {
       console.log("Đăng nhập: ", values);
       const action = loginApi(values);
       dispatch(action);
-      navigate("/home");
     }
   });
   return (

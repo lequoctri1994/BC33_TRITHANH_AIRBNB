@@ -1,5 +1,7 @@
 .list-page {
+  background-image: linear-gradient(174.2deg, #fff4e4 7.1%, #f0f6ee 67.4%);
   .container {
+    background-color: white;
     .row {
       .tittle {
         p {
@@ -58,14 +60,13 @@
               }
             }
             .price {
-              // @extend .button;
               a {
                 background: $bg-header-main;
                 color: $text-c1-light;
                 font-size: $text-xl;
-                &:hover{
-                 opacity: 0.8;
-                 transition: all 0.5s;
+                &:hover {
+                  opacity: 0.8;
+                  transition: all 0.5s;
                 }
                 span {
                 }

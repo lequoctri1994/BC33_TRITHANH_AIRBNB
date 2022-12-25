@@ -8,12 +8,12 @@ type Props = {}
 export default function List({ }: Props) {
     const { arrLocation } = useSelector((state: RootState) => state.bookingReducer)
     return (
-        <div className='list-page pt-3'>
+        <div className='list-page'>
             <div className="container">
                 <div className="row">
                     <div className="content col-7 mb-3">
-                        <div className="tittle">
-                            <p>Hơn {arrLocation.length} chỗ ở - Từ ngày - đến ngày</p>
+                        <div className="tittle pt-3" >
+                            <p>Hơn {arrLocation.length - 1} chỗ ở đã chọn</p>
                             <h3>Chỗ ở tại khu vực bản đồ đã chọn</h3>
                         </div>
                         {arrLocation.map((location) => {
