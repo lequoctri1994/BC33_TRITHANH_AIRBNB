@@ -25,7 +25,7 @@ export default function ResponsiveItem(props: Props) {
         }
     }, [])
     let Component: React.FC | any = props.component;
-    if (screen.width <= 420 && props.mobileComponent) {
+    if (screen.width <= 768 && props.mobileComponent) {
         Component = props.mobileComponent
     }
     return (

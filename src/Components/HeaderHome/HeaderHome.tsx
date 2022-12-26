@@ -131,7 +131,7 @@ export default function HeaderHome({ }: Props) {
           </div>
         </div>
       </div>
-      <div className="header-search">
+      <div className="header-search container">
         <form onSubmit={handleSubmit}>
           <div className="form-fill border row">
             <div className="location col-3">

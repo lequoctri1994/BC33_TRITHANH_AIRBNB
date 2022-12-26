@@ -44,7 +44,7 @@ export default function Home({ }: Props) {
               <div className="row">
                 {arrBooking.map((location) => {
                   if (location.id < 9) {
-                    return <div className="list-city col-12 pb-3">
+                    return <div className="list-city col-12 col-md-6 pb-3">
                       <div className="item d-flex p-3 border border-2 
                       border-success border-opacity-25 rounded">
                         <div className="thumbnail col-4 pe-3">
@@ -70,25 +70,25 @@ export default function Home({ }: Props) {
               <h3>Ở bất cứ đâu</h3>
             </div>
             <div className="row">
-              <div className="item col-12">
+              <div className="item col-12 col-md-6">
                 <div className="thumbnail">
                   <img src="/img/home/home.png" className='w-100' alt="" />
                 </div>
                 <p>Toàn bộ nhà</p>
               </div>
-              <div className="item col-12">
+              <div className="item col-12 col-md-6">
                 <div className="thumbnail">
                   <img src="/img/home/special.jpg" className='w-100 ' alt="" />
                 </div>
                 <p>Chỗ ở độc đáo</p>
               </div>
-              <div className="item col-12">
+              <div className="item col-12 col-md-6">
                 <div className="thumbnail">
                   <img src="/img/home/farm.jpg" className='w-100' alt="" />
                 </div>
                 <p>Trang trại và thiên nhiên</p>
               </div>
-              <div className="item col-12">
+              <div className="item col-12 col-md-6">
                 <div className="thumbnail">
                   <img src="/img/home/dog.png" className='w-100' alt="" />
                 </div>

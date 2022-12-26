@@ -139,13 +139,14 @@ export default function Detail({ }: Props) {
         </div>
         <div className="description">
           <div className="row">
-            <div className="content col-8">
+            <div className="content col-md-7 col-lg-7 col-xl-8">
               <div className="row">
-                <div className="tittle-left col-11">
+                <div className="title-left col-md-10 col-xl-11">
                   <h3>Toàn bộ căn hộ cho thuê</h3>
-                  <p>{arrDetail?.khach} khách - {arrDetail?.phongNgu} phòng ngủ - {arrDetail?.giuong} giường - {arrDetail?.phongTam} phòng tắm</p>
+                  <p>{arrDetail?.khach} khách - {arrDetail?.phongNgu} phòng ngủ <br />
+                    {arrDetail?.giuong} giường - {arrDetail?.phongTam} phòng tắm</p>
                 </div>
-                <div className="title-right col-1">
+                <div className="title-right col-md-2 col-xl-1">
                   <img src="http://picsum.photos/50/50" className='w-100 rounded-circle' alt="" />
                 </div>
               </div>
@@ -176,7 +177,9 @@ export default function Detail({ }: Props) {
                     </div>
                     <div className="col-11">
                       <h4>Chủ nhà siêu cấp</h4>
-                      {arrDetail?.moTa}
+                      <p>
+                        {arrDetail?.moTa}
+                      </p>
                     </div>
                   </div>
                   <div className="item d-flex pb-2">
@@ -206,90 +209,90 @@ export default function Detail({ }: Props) {
                   <div className="col-6">
                     {arrDetail?.bep
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-utensils"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Bếp</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.banLa
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-house-laptop"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Bàn làm việc</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.banUi
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-shirt"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Bàn ủi</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.dieuHoa
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-fan"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Điều hòa nhiệt độ</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.doXe
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-car"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Bãi đỗ xe</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.hoBoi
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-person-swimming"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Hồ bơi</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.mayGiat
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-socks"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Máy giặt</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.tivi
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-tv"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Ti-vi</span>
                         </div>
                       </div>)
                       : ""}
                     {arrDetail?.wifi
                       ? (<div className="item d-flex align-items-center">
-                        <div className="col-1">
+                        <div className="col-md-2 col-lg-2 col-xl-1">
                           <i className="fa-solid fa-wifi"></i>
                         </div>
-                        <div className="col-11">
+                        <div className="col-md-10 col-lg-10 col-xl-11">
                           <span>Wifi</span>
                         </div>
                       </div>)
@@ -297,24 +300,24 @@ export default function Detail({ }: Props) {
                   </div>
                 </div>
                 <div className="show-more pt-3">
-                  <button className='btn'>
+                  <button className='btn bg-light'>
                     Hiển thị tất cả 29 tiện nghi
                   </button>
                 </div>
               </div>
             </div>
-            <div className="payment col-4">
+            <div className="payment col-md-5 col-lg-5 col-xl-4">
               <form
                 onSubmit={handleSubmit}
               >
-                <div className="check p-4">
+                <div className="check p-4 bg-light">
                   <div className="cost">
                     <p> <span className='fw-bold'>${arrDetail?.giaTien}</span>/đêm</p>
                   </div>
                   <div className="row">
                     <div className="calendar p-2 text-center ">
-                      <div className="check">
-                        <div className="check-in w-50 me-3">
+                      <div className="check row">
+                        <div className="check-in col-lg-12 col-xl-6">
                           <p>
                             <i className="fa-regular fa-calendar-days"></i> Nhận phòng</p>
                           <input
@@ -326,7 +329,7 @@ export default function Detail({ }: Props) {
                             onClick={() => setOpen(open => !open)}
                           />
                         </div>
-                        <div className="check-out  w-50">
+                        <div className="check-out col-lg-12 col-xl-6">
                           <p><i className="fa-regular fa-calendar-days"></i> Trả phòng</p>
                           <input
                             id='dateOut'
