@@ -13,6 +13,7 @@ import Detail from './pages/Detail/Detail';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile'
+import Admin from './pages/Admin/Admin'
 
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
@@ -27,6 +28,7 @@ import Profile_Mobile from './pages/Profile/Profile_Mobile';
 import List_Mobile from './pages/List/List_Mobile';
 import Register_Mobile from './pages/Register/Register_Mobile';
 import Login_Mobile from './pages/Login/Login_Mobile';
+
 export const history: any = createBrowserHistory();
 
 const root = ReactDOM.createRoot(
@@ -37,6 +39,7 @@ root.render(
     <HistoryRouter history={history}>
       <Routes>
         <Route path='' element={<HomeTemplate />}>
+        <Route path='admin' element={<Admin/>}></Route>
           <Route index element={<ResponsiveItem component={Home} mobileComponent={Home_Mobile} />}></Route>
           <Route path='detail' element={
             <ResponsiveItem
@@ -85,6 +88,7 @@ root.render(
               mobileComponent={Register_Mobile}
             />
           }></Route>
+      
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
       </Routes>
