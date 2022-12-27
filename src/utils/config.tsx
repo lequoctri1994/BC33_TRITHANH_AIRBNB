@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export const USER_LOGIN = 'userLogin';
 export const USER_PROFILE = "userProfile";
 export const USER_CART = "userCart";
+export const USER_DETAIL = "userDetail";
 export const ACCESSTOKEN = 'accessToken';
 
 export const settings = {

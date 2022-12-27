@@ -37,7 +37,6 @@ root.render(
     <HistoryRouter history={history}>
       <Routes>
         <Route path='' element={<HomeTemplate />}>
-          <Route path='admin' element={<Admin />}></Route>
           <Route index element={<ResponsiveItem component={Home} mobileComponent={Home_Mobile} />}></Route>
           <Route path='home' element={<ResponsiveItem component={Home} mobileComponent={Home_Mobile} />}></Route>
           <Route path='detail' element={
@@ -62,6 +61,7 @@ root.render(
           }></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
+        <Route path='admin' element={<Admin />}></Route>
         <Route path='user' element={<UserTemplate />}>
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>

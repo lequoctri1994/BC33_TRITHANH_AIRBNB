@@ -64,7 +64,7 @@
                 }
                 .detail {
                   h5 {
-                    @include text($text-xl, $text-semiBold, $text-c1-dark);
+                    @include text($text-base, $text-semiBold, $text-c1-dark);
                   }
                   p {
                     @include text($text-base, $text-regular, $text-c1-dark);
