@@ -16,6 +16,7 @@ export default function Home({ }: Props) {
     dispatch(action)
     navigate("/list");
   }
+  //scroll To section page
   const scrollToSection = (link: any) => {
     window.scrollTo({
       top: link.current.offsetTop,
@@ -42,9 +43,9 @@ export default function Home({ }: Props) {
             </div>
             <div className="menu pt-5" ref={content}>
               <div className="row">
-                {arrBooking.map((location) => {
+                {arrBooking.map((location, index) => {
                   if (location.id < 9) {
-                    return <div className="list-city col-xl-3 col-lg-4 col-md-6 pb-3">
+                    return <div className="list-city col-xl-3 col-lg-4 col-md-6 pb-3" key={index}>
                       <div className="item d-flex p-3 bg-light border border-2 
                       border-success border-opacity-25 rounded">
                         <div className="thumbnail col-4 pe-3">

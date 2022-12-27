@@ -16,6 +16,7 @@ export default function Home({ }: Props) {
     dispatch(action)
     navigate("/list");
   }
+  //scroll To section page
   const scrollToSection = (link: any) => {
     window.scrollTo({
       top: link.current.offsetTop,

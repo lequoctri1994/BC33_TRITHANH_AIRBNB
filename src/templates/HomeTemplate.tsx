@@ -11,7 +11,7 @@ export default function HomeTemplate({ }: Props) {
   return (
     <>
       <ResponsiveItem component={HeaderHome} mobileComponent={HeaderHome_Mobile} />
-      <div style={{ minHeight: '88vh' }}>
+      <div className='home-template' style={{ minHeight: '88vh' }}>
         <Outlet />
       </div>
       <ResponsiveItem component={Footerhome} mobileComponent={FooterHome_Mobile} />

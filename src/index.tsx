@@ -26,8 +26,6 @@ import Home_Mobile from './pages/Home/Home_Mobile';
 import Detail_Mobile from './pages/Detail/Detail_Mobile';
 import Profile_Mobile from './pages/Profile/Profile_Mobile';
 import List_Mobile from './pages/List/List_Mobile';
-import Register_Mobile from './pages/Register/Register_Mobile';
-import Login_Mobile from './pages/Login/Login_Mobile';
 
 export const history: any = createBrowserHistory();
 
@@ -39,8 +37,9 @@ root.render(
     <HistoryRouter history={history}>
       <Routes>
         <Route path='' element={<HomeTemplate />}>
-        <Route path='admin' element={<Admin/>}></Route>
+          <Route path='admin' element={<Admin />}></Route>
           <Route index element={<ResponsiveItem component={Home} mobileComponent={Home_Mobile} />}></Route>
+          <Route path='home' element={<ResponsiveItem component={Home} mobileComponent={Home_Mobile} />}></Route>
           <Route path='detail' element={
             <ResponsiveItem
               component={Detail}
@@ -49,18 +48,6 @@ root.render(
           }>
             <Route path=':id' element={<Detail />}></Route>
           </Route>
-          <Route path='login' element={
-            <ResponsiveItem
-              component={Login}
-              mobileComponent={Login_Mobile}
-            />
-          }></Route>
-          <Route path='register' element={
-            <ResponsiveItem
-              component={Register}
-              mobileComponent={Register_Mobile}
-            />
-          }></Route>
           <Route path='list' element={
             <ResponsiveItem
               component={List}
@@ -76,19 +63,8 @@ root.render(
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
         <Route path='user' element={<UserTemplate />}>
-          <Route path="login" element={
-            <ResponsiveItem
-              component={Login}
-              mobileComponent={Login_Mobile}
-            />
-          }></Route>
-          <Route path="register" element={
-            <ResponsiveItem
-              component={Register}
-              mobileComponent={Register_Mobile}
-            />
-          }></Route>
-      
+          <Route path="login" element={<Login />}></Route>
+          <Route path="register" element={<Register />}></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
       </Routes>

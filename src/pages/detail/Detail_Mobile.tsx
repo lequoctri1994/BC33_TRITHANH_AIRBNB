@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { DispatchType, RootState } from '../../redux/configStore';
 import { getBookingDetailApi, getBookingIdApi, postBookingApi } from '../../redux/reducers/bookingReducer';
 import { DateRangePicker, RangeKeyDict } from "react-date-range"
@@ -8,16 +8,16 @@ import format from 'date-fns/format'
 import { addDays } from 'date-fns'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {}
 
 export default function Detail({ }: Props) {
     const { arrDetail } = useSelector((state: RootState) => state.bookingReducer);
     const { arrBookingId } = useSelector((state: RootState) => state.bookingReducer);
-    console.log(arrBookingId?.tinhThanh);
     const { userLogin } = useSelector((state: RootState) => state.userReduder);
     const dispatch: DispatchType = useDispatch();
-    const navigate = useNavigate()
     const params: any = useParams();
     useEffect(() => {
         const action = getBookingDetailApi(params.id);
@@ -96,8 +96,6 @@ export default function Detail({ }: Props) {
         const guest = target.guest.value;
         const action = postBookingApi(arrDetail?.id, arrDetail?.id, dateIn, dateOut, guest, userLogin.user.id)
         dispatch(action);
-        alert('Xác nhận đã đặt phòng thành công');
-        navigate("/profile");
     }
     return (
         <div className='detail-page-mobile'>
@@ -307,10 +305,8 @@ export default function Detail({ }: Props) {
                             </div>
                         </div>
                         <div className="payment col-12">
-                            <form
-                                onSubmit={handleSubmit}
-                            >
-                                <div className="check p-4">
+                            <form onSubmit={handleSubmit}>
+                                <div className="check p-4 bg-light">
                                     <div className="cost">
                                         <p> <span className='fw-bold'>${arrDetail?.giaTien}</span>/đêm</p>
                                     </div>
@@ -366,6 +362,17 @@ export default function Detail({ }: Props) {
                                             <button className='btn border' type='submit'>
                                                 Đặt phòng
                                             </button>
+                                            <ToastContainer
+                                                position="top-center"
+                                                autoClose={3000}
+                                                hideProgressBar={false}
+                                                newestOnTop={false}
+                                                closeOnClick
+                                                rtl={false}
+                                                pauseOnFocusLoss
+                                                draggable
+                                                pauseOnHover
+                                                theme="colored" />
                                         </div>
                                         <div className='notification text-center'>
                                             <p>Bạn vẫn chưa bị trừ tiền</p>

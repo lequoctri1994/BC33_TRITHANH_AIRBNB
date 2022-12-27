@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { DispatchType } from '../configStore';
-import { http, settings, USER_CART } from '../../utils/config';
+import { ACCESSTOKEN, http, settings, USER_CART } from '../../utils/config';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { history } from '../../index';
 
 export interface BookingModel {
     id: number;
@@ -177,7 +180,19 @@ export const postBookingApi =
                 soLuongKhach: guest,
                 maNguoiDung: profileId
             });
-            console.log("Lịch sử đặt phòng: ", result);
+            if (result.status === 201) {
+                toast.success('Đặt phòng thành công !!!', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    onClose: () => history.push('/profile')
+                });
+            }
         };
     };
 export const getBookingProfileIdApi = (profileId: number) => {
@@ -189,6 +204,8 @@ export const getBookingProfileIdApi = (profileId: number) => {
             setHistoryAction(bookingHistory);
         dispatch(action);
         dispatch(getBookingHistoryApi());
+        settings.setStorageJson(USER_CART, result.data.content);
+        settings.setStorage(ACCESSTOKEN, result.data.content.token);
     }
 }
 export const getBookingHistoryApi = () => {
