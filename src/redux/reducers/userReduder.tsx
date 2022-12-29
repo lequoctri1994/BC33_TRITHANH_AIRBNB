@@ -70,7 +70,6 @@ export const getProfileApi = (id: number) => {
 export const registerApi = (register: UserRegister) => {
     return async (dispatch: DispatchType) => {
         const result = await http.post('/api/auth/signup/', register);
-        console.log('Thông tin đăng ký: ', result.data.content);
     };
 };
 export const loginApi = (userLogin: UserLogin) => {

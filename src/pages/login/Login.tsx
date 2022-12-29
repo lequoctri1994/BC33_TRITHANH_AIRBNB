@@ -21,7 +21,6 @@ export default function Login({ }: Props) {
       password: Yup.string().required("Xin mời nhập vào password !!!"),
     }),
     onSubmit: (values: UserLogin) => {
-      console.log("Đăng nhập: ", values);
       const action = loginApi(values);
       dispatch(action);
     }

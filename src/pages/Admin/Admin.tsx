@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, theme, Input, Button, Space } from 'antd';
+import { Layout, Menu, theme, Input, Button } from 'antd';
 import { DispatchType, RootState } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { delUserApi, getIdUserApi, getUserApi, updateUser } from '../../redux/reducers/userManager';
@@ -63,110 +60,6 @@ export default function Admin({ }: Props) {
   }, [])
   return (
     <>
-      {/* ===========================================Modal Edit =========================================================== */}
-      <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: 'none' }}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa thông tin</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-            </div>
-            <form onSubmit={frm.handleSubmit}>
-              <div className="modal-body">
-                <div className="form-group mb-3">
-                  <label htmlFor="email">Email:</label>
-                  <input type="email" name="email" id="email"
-                    className="form-control"
-                    value={frm.values.email}
-                    onChange={frm.handleChange}
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="name">Tên:</label>
-                  <input type="name" name="name" id="name"
-                    className="form-control"
-                    value={frm.values.name}
-                    onChange={frm.handleChange}
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="phone">Số điện thoại:</label>
-                  <input type="phone" name="phone" id="phone"
-                    className="form-control"
-                    value={frm.values.phone}
-                    onChange={frm.handleChange}
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="birthday">Ngày sinh:</label>
-                  <input name="birthday" id="birthday"
-                    className="form-control"
-                    value={frm.values.birthday}
-                    onChange={frm.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn border-dark " data-bs-dismiss="modal">Hủy</button>
-                <button type="submit" className="btn border-dark">Cập nhật</button>
-                <ToastContainer
-                  position="top-center"
-                  autoClose={2000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="colored" />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {/* ===========================================Modal Information =========================================================== */}
-      <div className="modal fade" id="infoModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: 'none' }}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">Thông tin</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-            </div>
-            <form >
-              <div className="modal-body">
-                <div className="mb-3">
-                  <span className='text-primary'>Email: </span> <span>{userDetail.email}</span>
-                </div>
-                <div className="mb-3">
-                  <span className='text-primary'>Name: </span> <span>{userDetail.name}</span>
-                </div>
-                <div className="mb-3">
-                  <span className='text-primary'>Phone: </span> <span>{userDetail.phone}</span>
-                </div>
-                <div className="mb-3">
-                  <span className='text-primary'>Birthday: </span> <span>{userDetail.birthday}</span>
-                </div>
-                <div className="mb-3">
-                  <span className='text-primary'>Role: </span> <span>{userDetail.role}</span>
-                </div>
-                <div className="mb-3">
-                  <span className='text-primary'>Gender: </span>
-                  {userDetail.gender === true ? (
-                    <span>Male</span>
-                  ) : (
-                    <span>Female</span>
-                  )}
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn border-dark " data-bs-dismiss="modal">Hủy</button>
-                <button type="submit" className="btn border-dark">Cập nhật</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
       {/* ===========================================Layout Admin Page =========================================================== */}
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -200,6 +93,11 @@ export default function Admin({ }: Props) {
           />
         </Sider>
         <Layout className="site-layout">
+          <Button className='me-3 p-1'
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          >Trở về trang chủ</Button>
           <Header style={{ padding: 0, background: colorBgContainer }}>
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
@@ -234,6 +132,7 @@ export default function Admin({ }: Props) {
                   <td>{member.birthday}</td>
                   <td>{member.role}</td>
                   <td>
+                    {/* =========================================== Modal View Info =========================================================== */}
                     <Button className='me-3 p-1' type="primary" ghost
                       data-bs-toggle="modal"
                       data-bs-target="#infoModal"
@@ -242,6 +141,48 @@ export default function Admin({ }: Props) {
                       }}>
                       Xem Thêm Thông Tin
                     </Button>
+                    <div className="modal fade" id="infoModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: 'none' }}>
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Thông tin</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                          </div>
+                          <form >
+                            <div className="modal-body">
+                              <div className="mb-3">
+                                <span className='text-primary'>Email: </span> <span>{userDetail.email}</span>
+                              </div>
+                              <div className="mb-3">
+                                <span className='text-primary'>Name: </span> <span>{userDetail.name}</span>
+                              </div>
+                              <div className="mb-3">
+                                <span className='text-primary'>Phone: </span> <span>{userDetail.phone}</span>
+                              </div>
+                              <div className="mb-3">
+                                <span className='text-primary'>Birthday: </span> <span>{userDetail.birthday}</span>
+                              </div>
+                              <div className="mb-3">
+                                <span className='text-primary'>Role: </span> <span>{userDetail.role}</span>
+                              </div>
+                              <div className="mb-3">
+                                <span className='text-primary'>Gender: </span>
+                                {userDetail.gender === true ? (
+                                  <span>Male</span>
+                                ) : (
+                                  <span>Female</span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn border-dark " data-bs-dismiss="modal">Hủy</button>
+                              <button type="submit" className="btn border-dark">Cập nhật</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    {/* =========================================== Modal Edit =========================================================== */}
                     <Button className='me-3 p-1 border border-secondary rounded '
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
@@ -249,6 +190,68 @@ export default function Admin({ }: Props) {
                         dispatch(getIdUserApi(member.id));
                       }}
                     >Sửa</Button>
+                    <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: 'none' }}>
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa thông tin</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                          </div>
+                          <form onSubmit={frm.handleSubmit}>
+                            <div className="modal-body">
+                              <div className="form-group mb-3">
+                                <label htmlFor="email">Email:</label>
+                                <input type="email" name="email" id="email"
+                                  className="form-control"
+                                  value={frm.values.email}
+                                  onChange={frm.handleChange}
+                                />
+                              </div>
+                              <div className="form-group mb-3">
+                                <label htmlFor="name">Tên:</label>
+                                <input type="name" name="name" id="name"
+                                  className="form-control"
+                                  value={frm.values.name}
+                                  onChange={frm.handleChange}
+                                />
+                              </div>
+                              <div className="form-group mb-3">
+                                <label htmlFor="phone">Số điện thoại:</label>
+                                <input type="phone" name="phone" id="phone"
+                                  className="form-control"
+                                  value={frm.values.phone}
+                                  onChange={frm.handleChange}
+                                />
+                              </div>
+                              <div className="form-group mb-3">
+                                <label htmlFor="birthday">Ngày sinh:</label>
+                                <input name="birthday" id="birthday"
+                                  className="form-control"
+                                  value={frm.values.birthday}
+                                  onChange={frm.handleChange}
+                                />
+                              </div>
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn border-dark " data-bs-dismiss="modal">Hủy</button>
+                              <button type="submit" className="btn border-dark">Cập nhật</button>
+                              <ToastContainer
+                                position="top-center"
+                                autoClose={2000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                theme="colored" />
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    {/* ====================================== Delete =============================================== */}
                     <Button className='p-1' type="primary" danger ghost
                       onClick={() => {
                         dispatch(delUserApi(member.id));
