@@ -10,14 +10,14 @@ import {
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore';
 import HomeTemplate from './templates/HomeTemplate';
-import Home from './pages/Home/Home';
+import Home from './pages/home/Home';
 import Detail from './pages/Detail/Detail';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile'
 import Admin from './pages/Admin/Admin'
 import List from './pages/List/List';
-import Home_Mobile from './pages/Home/Home_Mobile';
+import Home_Mobile from './pages/home/Home_Mobile';
 import Detail_Mobile from './pages/Detail/Detail_Mobile';
 import Profile_Mobile from './pages/Profile/Profile_Mobile';
 import List_Mobile from './pages/List/List_Mobile';
