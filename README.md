@@ -5,11 +5,11 @@
 
 # II. Work list:
 
-    1. Thành : Build layout and fix bug all page, update action in redux, responsive mobile web and desktop for all page
-    2. Trị : login page, register page, user management and responsive
+    1. Thành : Build layout and fix bug all page, create and update all action in redux, responsive mobile web and desktop for all page
+    2. Trị : Build login page, register page and responsive
 
 # III. About project
 
-- This is a capstone project that applies Axios API and uses SCSS to build the CSS for the website. A website that includes API, basic UI
+- This is a capstone airbnb project that applies Axios API and uses SCSS to build the CSS for the website. A website that includes API
 - The project uses Typescript, bootstrap 5, SCSS, Axios API, configure store in redux and full responsive for all devices mobile and desktop
-- Lib using: Axios API, antd , formik and yup, react-toastify, daterangepicker
+- Library using: Axios API, antd , formik and yup, react-toastify, date-range-picker
