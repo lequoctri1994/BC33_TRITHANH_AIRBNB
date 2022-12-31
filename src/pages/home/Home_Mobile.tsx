@@ -46,7 +46,7 @@ export default function Home({ }: Props) {
                 {arrBooking.map((location) => {
                   if (location.id < 9) {
                     return <div className="list-city col-12 col-md-6 pb-3">
-                      <div className="item d-flex p-3 border border-2 
+                      <div className="item d-flex p-3 bg-light border border-2 
                       border-success border-opacity-25 rounded">
                         <div className="thumbnail col-4 pe-3">
                           <img src={location.hinhAnh}
