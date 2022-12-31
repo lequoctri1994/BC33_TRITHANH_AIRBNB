@@ -6,7 +6,8 @@
 # II. Work list:
 
     1. Thành : Build layout and fix bug all page, create and update all action in redux, responsive mobile web and desktop for all page
-    2. Trị : Build login page, register page and responsive
+    2. Trị : Build login page, register page and managemant user responsive
+    3. Setup & deploy Web Application: Both of them
 
 # III. About project
 
