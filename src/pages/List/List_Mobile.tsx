@@ -12,7 +12,7 @@ export default function List({ }: Props) {
       <div className="container">
         <div className="row">
           <div className="content col-12 mb-3">
-            <div className="tittle pt-3" >
+            <div className="tittle pt-3">
               <p>Hơn {arrLocation.length - 1} chỗ ở đã chọn</p>
               <h3>Chỗ ở tại khu vực bản đồ đã chọn</h3>
             </div>
